@@ -34,3 +34,9 @@ print(id)
 a_set = getSetsOnePage(id, 1)[1]['id']
 print(a_set)
 getPlayersAndScore(a_set)
+
+# getSetsOnePage checks
+id = getEventID('tournament/finals-destination-14/event/ultimate-singles')
+print(id)
+sets = getSetsOnePage(id, 1)
+print(sets)
