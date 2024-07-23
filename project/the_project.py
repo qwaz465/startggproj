@@ -11,4 +11,5 @@ eventIDs = [getEventID(tourney) for tourney in tournaments]
 setIDs = []
 # get all set IDs using function in processing, test next time you read this
 for ID in eventIDs:
-    setIDs.extend(getSetIDs)
+    setIDTemp = getSetIDs(ID)
+    setIDs.extend(setIDTemp)
