@@ -126,3 +126,4 @@ def getPlayersAndScore(setId):
     print(p2Pre + ' ' + p2Name + ':' + str(p2Score))
     p1NameFull = p1Pre + ' ' + p1Name
     p2NameFull = p2Pre + ' ' + p2Name
+    return {p1NameFull : p1Score, p2NameFull : p2Score}
