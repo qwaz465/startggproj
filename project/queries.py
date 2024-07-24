@@ -122,8 +122,14 @@ def getPlayersAndScore(setId):
         p1Pre = ''
     if p2Pre == None:
         p2Pre = ''
-    print(p1Pre + ' ' + p1Name + ':' + str(p1Score))
-    print(p2Pre + ' ' + p2Name + ':' + str(p2Score))
-    p1NameFull = p1Pre + ' ' + p1Name
-    p2NameFull = p2Pre + ' ' + p2Name
+    # print(p1Pre + ' ' + p1Name + ':' + str(p1Score))
+    # print(p2Pre + ' ' + p2Name + ':' + str(p2Score))
+    if p1Pre == '':
+      p1NameFull = p1Name
+    else:
+      p1NameFull = p1Pre + ' | ' + p1Name
+    if p2Pre == '':
+      p2NameFull = p2Name
+    else:
+      p2NameFull = p2Pre + ' | ' + p2Name
     return {p1NameFull : p1Score, p2NameFull : p2Score}
