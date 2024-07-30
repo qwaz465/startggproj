@@ -47,20 +47,26 @@ id = getEventID('tournament/finals-destination-14/event/ultimate-singles')
 getSetIDs(id)
 
 
-# large flow test
+# large flow test (will continue to update as new stuff is implemented)
 # list of tournaments to use
-tournaments = ['tournament/finals-destination-14/event/ultimate-singles']
+tournaments = ['tournament/finals-destination-14/event/ultimate-singles', 'tournament/smash-at-the-made-45/event/smash-ultimate-singles']
 # eventID list via comprehension
 eventIDs = [getEventID(tourney) for tourney in tournaments]
+print(eventIDs)
 setIDs = []
 # get all set IDs using function in processing, test next time you read this
 for ID in eventIDs:
   setIDTemp = getSetIDs(ID)
   setIDs.extend(setIDTemp)
+print(setIDs)
 # use set ids to get actual set counts as a list of maps where each map represents a set {p1 : score, p2 : score}
 sets = []
 for setID in setIDs:
-  set = getPlayersAndScore(setID)
-  sets.append(set)
+  smashSet = getPlayersAndScore(setID)
+  sets.append(smashSet)
 print(sets)
+players = playerList(sets)
+print(players)
+print(len(players))
+print(playerList(sets))
 # test above flow next time, also think of how to extract and put in matrix/process players

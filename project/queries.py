@@ -111,7 +111,7 @@ def getPlayersAndScore(setId):
     # list of len 2, each is map of stuff to right of query, extract accordingly
     # split list into 2 maps, grab vals
     stuff = response['data']['set']['slots']
-    print(stuff)
+    # print(stuff)
     p1Name = stuff[0]['entrant']['participants'][0]['player']['gamerTag']
     p1Pre = stuff[0]['entrant']['participants'][0]['player']['prefix']
     p1Score = stuff[0]['standing']['stats']['score']['value']
