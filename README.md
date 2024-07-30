@@ -4,4 +4,4 @@
   #### File "<stdin>", line 2, in <module>
   #### File "<stdin>", line 9, in getPlayersAndScore
   #### KeyError: 'data'
-#### and i do not know why it is happening, will ask in startgg discord to see if i can get help
+#### and i do not know why it is happening, will ask in startgg discord to see if i can get help, also getting weird json errors on occasion

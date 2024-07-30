@@ -59,12 +59,15 @@ for ID in eventIDs:
   setIDTemp = getSetIDs(ID)
   setIDs.extend(setIDTemp)
 print(setIDs)
+print(len(setIDs))
 # use set ids to get actual set counts as a list of maps where each map represents a set {p1 : score, p2 : score}
 sets = []
 for setID in setIDs:
   smashSet = getPlayersAndScore(setID)
+  print(smashSet)
   sets.append(smashSet)
 print(sets)
+print(len(sets))
 players = playerList(sets)
 print(players)
 print(len(players))
