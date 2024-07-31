@@ -63,6 +63,7 @@ print(len(setIDs))
 # use set ids to get actual set counts as a list of maps where each map represents a set {p1 : score, p2 : score}
 sets = []
 for setID in setIDs:
+  print(setID)
   smashSet = getPlayersAndScore(setID)
   print(smashSet)
   sets.append(smashSet)
