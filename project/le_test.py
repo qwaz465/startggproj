@@ -1,6 +1,7 @@
 import requests
 from queries import *
 from processing import *
+import numpy as np
 header = {"Authorization" : "Bearer 8a4affeca417cac84a209ebf37e8a8d6"}   
 url = 'https://api.start.gg/gql/alpha'
 query = '''
@@ -49,7 +50,7 @@ getSetIDs(id)
 
 # large flow test (will continue to update as new stuff is implemented)
 # list of tournaments to use
-tournaments = ['tournament/finals-destination-14/event/ultimate-singles', 'tournament/smash-at-the-made-45/event/smash-ultimate-singles']
+tournaments = ['tournament/finals-destination-14/event/ultimate-singles']
 # eventID list via comprehension
 eventIDs = [getEventID(tourney) for tourney in tournaments]
 print(eventIDs)
@@ -63,14 +64,24 @@ print(len(setIDs))
 # use set ids to get actual set counts as a list of maps where each map represents a set {p1 : score, p2 : score}
 sets = []
 for setID in setIDs:
-  print(setID)
+  # print(setID)
   smashSet = getPlayersAndScore(setID)
-  print(smashSet)
+  # print(smashSet)
   sets.append(smashSet)
 print(sets)
 print(len(sets))
 players = playerList(sets)
 print(players)
 print(len(players))
-print(playerList(sets))
+playerCount = len(players)
+# print(playerList(sets))
 # test above flow next time, also think of how to extract and put in matrix/process players
+playerMatrixIndex, gameMatrix, setMatrix = makeMatrices(players, sets)
+print(playerMatrixIndex)
+print(gameMatrix)
+print(setMatrix)
+# retrieving shaveh uzo set/game count, should be 1-0/3-0 respectively
+print(setMatrix[26, 36])
+print(setMatrix[36, 26])
+print(gameMatrix[26, 36])
+print(gameMatrix[36, 26])
