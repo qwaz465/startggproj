@@ -2,6 +2,7 @@ import requests
 from queries import *
 from processing import *
 import numpy as np
+import math
 # print('set query' + setQuery)
 header = {"Authorization" : "Bearer 8a4affeca417cac84a209ebf37e8a8d6"}   
 url = 'https://api.start.gg/gql/alpha'
@@ -24,3 +25,7 @@ for setID in setIDs:
 # make set of players and store size of set to make ssbu set score matrix
 players = playerList(sets)
 playerMatrixIndex, gameMatrix, setMatrix = makeMatrices(players, sets)
+elo = {player:1500 for player in players}
+for smashSet in sets:
+    elo = updateElo(elo, smashSet)
+print(elo)

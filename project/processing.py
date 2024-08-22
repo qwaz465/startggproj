@@ -1,6 +1,7 @@
 from the_project import *
 from queries import *
 import numpy as np
+import math
 # for 1 tournament, grab all sets by page and adds IDs to setList and returns it
 # DO NOT USE THE WORD SET IT FUCKS EVERYTHING UP!!!!!!
 def getSetIDs(eventID):
@@ -67,3 +68,36 @@ def makeMatrices(players, sets):
         else:
             setMatrix[p2index, p1index] += 1
     return playerMatrixIndex, gameMatrix, setMatrix
+
+# updateElo takes elo map and a set and computes updated elo score and returns the new updated elo map
+def updateElo(smashSet, elo):
+    names = list(smashSet.keys())
+    p1name = names[0]
+    p2name = names[1]
+    scores = list(smashSet.values())
+    p1score = scores[0]
+    p2score = scores[1]
+    # stop here if dq set
+    if p1score < 0 or p2score < 0:
+        return elo
+    p1rank = elo[p1name]
+    p2rank = elo[p2name]
+    # elo probability
+    p1prob = 1.0/(1 + math.pow(10, (p1rank - p2rank) / 400.0))
+    p2prob = 1.0 - p1prob
+    # 1 is p1 win, 0 otherwise
+    if p1score > p2score:
+        outcome = 1
+    else:
+        outcome = 0
+    # k is some scaling constant, play with it later
+    k = 30
+    # updating elo
+    p1rank += k*(outcome - p1prob)
+    p2rank += k*((1 - outcome) - p2prob)
+    print(p1rank)
+    print(p2rank)
+    # updating elo map
+    elo[p1name] = p1rank
+    elo[p2name] = p2rank
+    return elo

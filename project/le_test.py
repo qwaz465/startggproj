@@ -85,3 +85,8 @@ print(setMatrix[26, 36])
 print(setMatrix[36, 26])
 print(gameMatrix[26, 36])
 print(gameMatrix[36, 26])
+elo = {player:1500 for player in players}
+print(elo)
+for smashSet in sets:
+  elo = updateElo(elo, smashSet)
+print(elo)
