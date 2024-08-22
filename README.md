@@ -1,4 +1,6 @@
 # jake project
+### 8/21
+#### got elo to "work" but it is not very good. however this is the first instance of a technically finished product especially if i figure out the rate limiting thing. Exciting stuff. Also implemented sorting for elo
 ### 8/05
 #### have not looked into rate limit yet, testing using smaller set for now until i fix it. however, i did add the np array data structure to hold both game and set counts with a dictionary that maps player name to index in matrix where matrix[0,1] retrieves sets/games player 0 has over player 1. seems to be working fine with tests.
 ### 7/30
