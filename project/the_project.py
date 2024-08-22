@@ -28,4 +28,4 @@ playerMatrixIndex, gameMatrix, setMatrix = makeMatrices(players, sets)
 elo = {player:1500 for player in players}
 for smashSet in sets:
     elo = updateElo(elo, smashSet)
-print(elo)
+elo = sortElo(elo)

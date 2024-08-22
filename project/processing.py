@@ -70,15 +70,19 @@ def makeMatrices(players, sets):
     return playerMatrixIndex, gameMatrix, setMatrix
 
 # updateElo takes elo map and a set and computes updated elo score and returns the new updated elo map
-def updateElo(smashSet, elo):
+def updateElo(elo, smashSet):
+    print(smashSet)
+    print(elo)
     names = list(smashSet.keys())
+    print(names)
     p1name = names[0]
     p2name = names[1]
     scores = list(smashSet.values())
+    print(scores)
     p1score = scores[0]
     p2score = scores[1]
     # stop here if dq set
-    if p1score < 0 or p2score < 0:
+    if p1score is None or p2score is None:
         return elo
     p1rank = elo[p1name]
     p2rank = elo[p2name]
@@ -101,3 +105,8 @@ def updateElo(smashSet, elo):
     elo[p1name] = p1rank
     elo[p2name] = p2rank
     return elo
+# sorts elo map by value and stays as dictionary
+def sortElo(elo):
+    eloSorted = sorted(elo.items(), key = lambda x: x[1], reverse = True)
+    eloSorted = dict(eloSorted)
+    return eloSorted

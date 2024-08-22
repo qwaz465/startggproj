@@ -89,4 +89,5 @@ elo = {player:1500 for player in players}
 print(elo)
 for smashSet in sets:
   elo = updateElo(elo, smashSet)
+elo = sortElo(elo)
 print(elo)
