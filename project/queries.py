@@ -1,6 +1,8 @@
 import requests
+from limiter import Limiter
 header = {"Authorization" : "Bearer 8a4affeca417cac84a209ebf37e8a8d6"}   
 url = 'https://api.start.gg/gql/alpha'
+rate_limiter = Limiter(rate=1.1, capacity=1)
 
 eventIDQuery = '''
 query getEventId($slug: String) {
@@ -11,6 +13,7 @@ query getEventId($slug: String) {
 },
 '''
 # returns event id lawls
+@rate_limiter
 def getEventID(slug):
     variables = {"slug" : slug}
     json_request = {"query" : eventIDQuery, "variables" : variables}
@@ -36,13 +39,16 @@ query EventSets($eventId: ID!, $page: Int!, $perPage: Int!) {
 },
 '''
 # returns amount of pages, use this to iterate through next func
+@rate_limiter
 def getTotalPagesSet(eventId):
     variables = {"eventId" : eventId, "page" : 1, "perPage" : 40}
     json_request = {"query" : setQuery, "variables" : variables}
     request = requests.post(url = url, json = json_request, headers = header)
     response = request.json()
     return response['data']['event']['sets']['pageInfo']['totalPages']
+
 # returns list of 'id' : actual id maps, iterate through this later to grab set IDs
+@rate_limiter
 def getSetsOnePage(eventId, page):
     variables = {"eventId" : eventId, "page" : page, "perPage" : 40}
     json_request = {"query" : setQuery, "variables" : variables}
@@ -102,6 +108,7 @@ query SetsAndPlayers($setId: ID!) {
   }
 }
 '''
+@rate_limiter
 def getPlayersAndScore(setId):
     variables = {"setId" : setId}
     json_request = {"query" : playerAndScoreQuery, "variables" : variables}
@@ -110,6 +117,7 @@ def getPlayersAndScore(setId):
     # print(response)
     # list of len 2, each is map of stuff to right of query, extract accordingly
     # split list into 2 maps, grab vals
+    print(response)
     stuff = response['data']['set']['slots']
     # print(stuff)
     p1Name = stuff[0]['entrant']['participants'][0]['player']['gamerTag']

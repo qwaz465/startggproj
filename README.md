@@ -1,11 +1,13 @@
 # jake project
-### 8/21
+### 1/1/25
+#### WE ARE SO BACK also fixed rate limiting thing by limiting the query rates (surprising) soooooo i can think more about how an actual alg can work instead of basic elo (also might be funny to make NN for rankings based on score but idk where to get training data targets from...)
+### 8/21/24
 #### got elo to "work" but it is not very good. however this is the first instance of a technically finished product especially if i figure out the rate limiting thing. Exciting stuff. Also implemented sorting for elo
-### 8/05
+### 8/05/24
 #### have not looked into rate limit yet, testing using smaller set for now until i fix it. however, i did add the np array data structure to hold both game and set counts with a dictionary that maps player name to index in matrix where matrix[0,1] retrieves sets/games player 0 has over player 1. seems to be working fine with tests.
-### 7/30
+### 7/30/24
 #### seeing that im getting rate limited, will look in to that
-### 7/29
+### 7/29/24
 #### added functionality to extract players from sets, which seems to work however getting sets from setIDs seems to be broken because i get the following error on set 81 out of 114 (first set of the 2nd tournament in my list): "Traceback (most recent call last):
   #### File "<stdin>", line 2, in <module>
   #### File "<stdin>", line 9, in getPlayersAndScore
