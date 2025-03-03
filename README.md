@@ -1,15 +1,16 @@
-# jake project
-### 1/1/25
-#### WE ARE SO BACK also fixed rate limiting thing by limiting the query rates (surprising) soooooo i can think more about how an actual alg can work instead of basic elo (also might be funny to make NN for rankings based on score but idk where to get training data targets from...)
-### 8/21/24
-#### got elo to "work" but it is not very good. however this is the first instance of a technically finished product especially if i figure out the rate limiting thing. Exciting stuff. Also implemented sorting for elo
-### 8/05/24
-#### have not looked into rate limit yet, testing using smaller set for now until i fix it. however, i did add the np array data structure to hold both game and set counts with a dictionary that maps player name to index in matrix where matrix[0,1] retrieves sets/games player 0 has over player 1. seems to be working fine with tests.
-### 7/30/24
-#### seeing that im getting rate limited, will look in to that
-### 7/29/24
-#### added functionality to extract players from sets, which seems to work however getting sets from setIDs seems to be broken because i get the following error on set 81 out of 114 (first set of the 2nd tournament in my list): "Traceback (most recent call last):
-  #### File "<stdin>", line 2, in <module>
-  #### File "<stdin>", line 9, in getPlayersAndScore
-  #### KeyError: 'data'
-#### and i do not know why it is happening, will ask in startgg discord to see if i can get help, also getting weird json errors on occasion
+# Data Collector and Player Ranker for "Super Smash Brothers Ultimate" Tournaments
+Within the community of Super Smash Brothers, ranking of players through tournament data is a regular occurence on multiple scales such as the state level, country level, or even a world-wide level. Despite ranking being a frequent activity, a lot of manual labor in data aggregation and organization is performed with a lack of a software-based framework to speed up and automate the process. This tool aims to be just that by querying the database of the standard tournament hosting website, start.gg. Once these events are queried, every participating player and their matches played are processed and stored in a manner that is easily digestible for a ranker to use manually, or do further computational processing. An example of this further computation is provided, being the creation of a player ranking within Northern California over the span of 3 months.
+
+## queries.py
+This contains all of the necesarry API queries, and the functions that use them, in order to properly retreive data in accordance with rate limits. These queries include getting the unique IDs of each event, retrieving every set (the unit of game used in tournaments) within an event, and getting the participants and score of a given set.
+
+## processing.py
+This file contains methods revolving around both the flow of incoming queries and also what to do with the data after it is queried. This concerns 2 main actions: creating and initializing 2D arrays that contains the set and game records for every combination of players (a set can consist of anywhere between 2 and 5 games), and also maintaining an ELO ranking based off of this data.
+
+## the_project.py (rename this to something else)
+A lightweight example usage of the general pipeline to be employed
+
+## pr-generator.ipynb
+A more robust example usage that includes lots of extra post-processing that is used to generate the Nothern California player rankings. Extra functionality includes automatic tournament link scraping based off of location, extracting "notable" wins and losses for given players (based off of rankings), and a more robust AI produced ranking using agentic reasoning. Eventually, this pipeline will be available to anyone who wants to create their own ranking whether it be for their state, country, or even worldwide.
+
+## also, get rid of tests part bc it doesnt need to be published, jpynb is more relevant now

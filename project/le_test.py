@@ -1,8 +1,9 @@
 import requests
 from queries import *
 from processing import *
+from keys import api_key
 import numpy as np
-header = {"Authorization" : "Bearer 8a4affeca417cac84a209ebf37e8a8d6"}   
+header = {"Authorization" : api_key}   
 url = 'https://api.start.gg/gql/alpha'
 
 # large flow test (will continue to update as new stuff is implemented)

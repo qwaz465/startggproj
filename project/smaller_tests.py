@@ -2,7 +2,8 @@ import requests
 from queries import *
 from processing import *
 import numpy as np
-header = {"Authorization" : "Bearer 8a4affeca417cac84a209ebf37e8a8d6"}   
+from keys import api_key
+header = {"Authorization" : api_key}   
 url = 'https://api.start.gg/gql/alpha'
 query = '''
 query Lawls($slug: String) {
