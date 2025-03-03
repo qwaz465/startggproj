@@ -3,7 +3,6 @@ from queries import *
 import numpy as np
 import math
 # for 1 tournament, grab all sets by page and adds IDs to setList and returns it
-# DO NOT USE THE WORD SET IT FUCKS EVERYTHING UP!!!!!!
 def getSetIDs(eventID):
     setList = []
     # getting page count for bracket
@@ -35,10 +34,10 @@ def getSetIDs(eventID):
 def playerList(sets):
     players = set()
     for smashSet in sets:
-        # Ensure smashSet has at least two keys
+        # Ensure smashSet has at least two keys for sanity check
         if len(smashSet) < 2:
             print(f"Warning: Unexpected smashSet format: {smashSet}")
-            continue  # Skip this iteration
+            continue 
         
         names = list(smashSet.keys())
         p1name = names[0]
@@ -71,10 +70,10 @@ def makeMatrices(players, sets):
         p2score = scores[1]
         p1index = playerMatrixIndex[p1name]
         p2index = playerMatrixIndex[p2name]
-        # dq case
+        # dq case in case it wasn't caught earlier
         if p1score is None or p2score is None:
             break
-        # updating game mat
+        # updating game matrix
         gameMatrix[p1index, p2index] += p1score
         gameMatrix[p2index, p1index] += p2score
         # p1 won set case
@@ -131,7 +130,7 @@ def updateElo(elo, smashSet):
     names = list(smashSet.keys())
     print(names)
     
-    # Check if the smashSet has at least two players
+    # sanity check
     if len(names) < 2:
         print(f"Warning: Incomplete smashSet: {smashSet}")
         return elo  # Skip this set
@@ -161,7 +160,7 @@ def updateElo(elo, smashSet):
     # Determine the outcome
     outcome = 1 if p1score > p2score else 0
     
-    # K is a scaling constant
+    # K is a scaling constant, value is up to user but defaults to 30
     k = 30
     
     # Update ranks

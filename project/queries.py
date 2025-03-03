@@ -13,7 +13,7 @@ query getEventId($slug: String) {
   }
 },
 '''
-# returns event id lawls
+# returns event id
 @rate_limiter
 def getEventID(slug):
     variables = {"slug" : slug}
@@ -143,6 +143,7 @@ query SetsAndPlayers($setId: ID!) {
 #       p2NameFull = p2Pre + ' | ' + p2Name
 #     return {p1NameFull : p1Score, p2NameFull : p2Score}
 
+# returns {player : score} map for a given set, cached to increase speed
 @rate_limiter
 def getPlayersAndScore(setId, cache):
     # Check if result is cached
