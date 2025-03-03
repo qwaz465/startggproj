@@ -12,5 +12,3 @@ A lightweight example usage of the general pipeline to be employed
 
 ## pr-generator.ipynb
 A more robust example usage that includes lots of extra post-processing that is used to generate the Nothern California player rankings. Extra functionality includes automatic tournament link scraping based off of location, extracting "notable" wins and losses for given players (based off of rankings), and a more robust AI produced ranking using agentic reasoning. Eventually, this pipeline will be available to anyone who wants to create their own ranking whether it be for their state, country, or even worldwide.
-
-## also, get rid of tests part bc it doesnt need to be published, jpynb is more relevant now
